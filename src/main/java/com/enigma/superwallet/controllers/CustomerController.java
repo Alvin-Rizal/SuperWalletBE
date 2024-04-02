@@ -27,7 +27,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN', 'ROLE_ADMIN')")
+//    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN', 'ROLE_ADMIN')")
     public ResponseEntity<?> getAllCustomer() {
         List<CustomerResponse> customerList = customerService.getAll();
         return ResponseEntity.status(HttpStatus.OK)

@@ -48,6 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final UserCredentialService userCredentialService;
     private final DummyBankRepository dummyBankRepository;
     private final ProfileImageRepository profileImageRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${app.super_wallet.path.firebaseUrl}")
     private String firebaseJson;
@@ -117,7 +118,7 @@ public class CustomerServiceImpl implements CustomerService {
                     .createdAt(customer.getCreatedAt())
                     .updatedAt(LocalDateTime.now())
                     .email(customer.getUserCredential().getEmail())
-                    .password(registerRequest.getPassword())
+                    .password(passwordEncoder.encode(registerRequest.getPassword()))
                     .role(customer.getUserCredential().getRole())
                     .build();
             userCredentialService.updateUserCredential(userCredential);
